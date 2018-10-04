@@ -1,92 +1,97 @@
 package com.lvm;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
-import com.lvm.dao.LicenceDao;
-import com.lvm.model.Licence;
-import com.lvm.util.HibernateUtil;
+import java.util.ArrayList;
+
+import com.lvm.model.CahierDesCharges;
  
 public class App {
+ 
 	
-	
-	public static void addNewUser (UserDao dao, User user, String firstName, String lastName, String year, String month, String date,  String email) {
+	public static void main(String[] args) {
+
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		
-		 // Add new user
-        user = new User();
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        try {
-            Date dob = new SimpleDateFormat("yyyy-MM-dd").parse(""+year+"-"+month+"-"+date+"");
-            user.setDob(dob);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        user.setEmail("dwp20p3@simplon.com");
-        dao.addUser(user);
-   
-        System.out.println("User is added successfully into DB");
+		//create
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+
+		CahierDesCharges cahierDesCharges1 = new CahierDesCharges();
+		cahierDesCharges1.setTypeSite("e-commerce");
+		cahierDesCharges1.setTailleEntreprise("");
+		cahierDesCharges1.setFonctionnalites(null);
+		cahierDesCharges1.setTypeLicence("");
+
+		session.save(cahierDesCharges1);
+		tx.commit();
+
+		System.out.println("Le cahier des charges " + cahierDesCharges1.getIdCahierDesCharges()
+				+ " a été ajouté à votre base de données.");
+		
+		session = sessionFactory.getCurrentSession();
+		tx = session.beginTransaction();
+
+		CahierDesCharges cahierDesCharges2 = new CahierDesCharges();
+		cahierDesCharges2.setTypeSite("site vitrine");
+		cahierDesCharges2.setTailleEntreprise("");
+		cahierDesCharges2.setFonctionnalites(null);
+		cahierDesCharges2.setTypeLicence("");
+
+		session.save(cahierDesCharges2);
+		tx.commit();
+		
+		System.out.println("Le cahier des charges " + cahierDesCharges2.getIdCahierDesCharges()
+		+ " a été ajouté à votre base de données.");
+		
+		//update
+		session = sessionFactory.getCurrentSession();
+		tx = session.beginTransaction();
+
+		cahierDesCharges2.setTypeSite("blog");
+
+		session.update(cahierDesCharges2);
+		tx.commit();
+		
+		System.out.println("Le cahier des charges " + cahierDesCharges1.getIdCahierDesCharges()
+		+ " a bien été mis à jour.");
+		
+		//read
+		session = sessionFactory.getCurrentSession();
+		tx = session.beginTransaction();
+		
+		ArrayList<CahierDesCharges> cahierDesChargesListe = new ArrayList<CahierDesCharges>();
+
+		cahierDesChargesListe = (ArrayList<CahierDesCharges>) session.createQuery("FROM CahierDesCharges").list();
+
+		tx.commit();
+		
+		System.out.println("Voici la liste des types de sites" + cahierDesChargesListe);
+		
+		//delete
+		session = sessionFactory.getCurrentSession();
+		tx = session.beginTransaction();
+
+		session.delete(cahierDesCharges2);
+		tx.commit();
+		
+		System.out.println("Un cahier des charges a été supprimé.");
+
+		session = sessionFactory.getCurrentSession();
+		tx = session.beginTransaction();
+		
+		cahierDesChargesListe = new ArrayList<CahierDesCharges>();
+
+		cahierDesChargesListe = (ArrayList<CahierDesCharges>) session.createQuery("FROM CahierDesCharges").list();
+
+		tx.commit();
+		
+		System.out.println("Voici la liste des types de sites" + cahierDesChargesListe);
+		
 	}
- 
-	
-    public static void main(String[] args) {
-    	SessionFactory sf = HibernateUtil.getSessionFactory();
-    	Session session = sf.openSession();
-    	session.beginTransaction();
- 
-    	UserDao dao = new UserDao();
- 
-        // Add new user
-    	User user = new User();
-    	App.addNewUser (dao, user, "Athanasia","Pierre", "2018", "06", "04", "dwp20p3@simplon.com");
-    	User user1 = new User();
-    	App.addNewUser (dao, user1, "Pierre","Athanasia", "2018", "06", "08", "dwp20p3@simplon.co");
-    	User user2 = new User();
-    	App.addNewUser (dao, user2, "Pierre","PierreKlk", "2018", "08", "09", "dwp20pfccv3@simplon.com");
-     
-    	
-    	// Update user : dwp20p3  avec le bon mail 
-           user.setEmail("dwp20p3@simplon.co");
-           user.setUserid(1);
-           user.setFirstName("Athanasia");
-           user.setLastName("Pierre");
-           Date dob;
-           try {
-        	   dob = new SimpleDateFormat("yyyy-MM-dd").parse("2018-06-04");
-        	   user.setDob(dob);
-           } catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-           }
-          
-           dao.updateUser(user);
-           System.out.println("User is updated successfully");
-    	
-    	// Delete user by id
-        dao.deleteUser(3);
-    	
- 
-        Transaction trns = null;
-		// Get all users
-        for (User iter : dao.getAllUsers(trns)) {
-        	System.out.println(iter);
-        }
- 
-        // Get user by id
-        System.out.println(dao.getUserById(2, trns));
- 
-        //commit & close
-        session.getTransaction().commit();
-        session.save(user);
-        session.close();
-        
-      
-    }
  
 }
 

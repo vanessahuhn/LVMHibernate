@@ -6,7 +6,7 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost/UserDB</property>
+        <property name="connection.url">jdbc:mysql://localhost/jacky</property>
         <property name="connection.username">root</property>
         <property name="connection.password">Password29</property>
  
@@ -29,7 +29,7 @@
         <property name="hbm2ddl.auto">update</property>
  
         <!-- Mapping files : contiendra le lien vers les xml qui gèrent les modèles -->
-        <mapping resource="user.hbm.xml" />
+        <mapping resource="CahierDesCharges.hbm.xml" />
  
     </session-factory>
 </hibernate-configuration>

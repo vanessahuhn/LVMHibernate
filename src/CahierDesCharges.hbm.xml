@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- un fichier xml par modèle --> 
+<hibernate-mapping>
+    <class name="com.lvm.model.CahierDesCharges" table="CahierDesCharges">
+        <id name="idCahierDesCharges" type="int" column="idCahierDesCharges">
+            <generator class="increment" />
+        </id>
+        <property name="typeSite">
+            <column name="typeSite" />
+        </property>
+        <property name="tailleEntreprise">
+            <column name="tailleEntreprise" />
+        </property>
+        <property name="fonctionnalites">
+            <column name="fonctionnalites" />
+        </property>
+        <property name="typeLicence">
+            <column name="typeLicence" />
+        </property>
+    </class>
+</hibernate-mapping>
