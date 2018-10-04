@@ -18,9 +18,7 @@
     <link href="css/floating-labels.css" rel="stylesheet">
   </head>
 
-  <body>
-
-    <header>
+  <header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Fixed navbar</a>
@@ -47,18 +45,30 @@
       </nav>
     </header>
 
-    <!-- Begin page content -->
-    <main role="main" class="container">
-      <h1 class="mt-5">Sticky footer with fixed navbar</h1>
-      <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
-      <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
-    </main>
+    <body class="h-100 bg-white">
+      <form class="form-signin" action="ConnexionServlet" method="post" onsubmit="return validate()">
+        <div class="text-center mb-4">
+          <img class="my-5 img-fluid" src="img/logo.png" alt="">
+          <h1 class="mb-3 font-weight-normal">Se connecter</h1>
+        </div>
 
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
-      </div>
-    </footer>
+        <div class="form-label-group mb-4">
+          <input type="email" name="mail" id="inputEmail" class="form-control" placeholder="Adresse e-mail" required autofocus>
+          <label for="inputEmail">Adresse e-mail</label>
+        </div>
+
+        <div class="form-label-group mb-2">
+          <input type="password" name="mot_de_passe" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+          <label for="inputPassword">Mot de passe</label>
+        </div>
+        <a href="#"> Mot de passe oublié ?</a>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-lg btn-primary my-4" type="submit">Se connecter</button>
+        </div>
+      </form>
+    </body>
+
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -67,5 +77,5 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
-  </body>
+
 </html>
