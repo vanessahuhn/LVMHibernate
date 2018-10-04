@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.lvm.dao.LicenceDao;
-import com.lvm.model.Licence;
+import com.lvm.model.Administrateur;
 import com.lvm.util.HibernateUtil;
  
 public class App {

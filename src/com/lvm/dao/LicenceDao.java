@@ -7,7 +7,7 @@ import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
  
-import com.lvm.model.Licence;
+import com.lvm.model.Administrateur;
 import com.lvm.util.HibernateUtil;
 
 //DAO = Data Access Object
