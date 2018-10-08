@@ -8,16 +8,16 @@
         <id name="idCahierDesCharges" type="int" column="idCahierDesCharges">
             <generator class="increment" />
         </id>
-        <property name="typeSite">
-            <column name="typeSite" />
+        <property name="typeSite" type="string">
+            <column name="typeSite"/>
         </property>
-        <property name="tailleEntreprise">
+        <property name="tailleEntreprise" type="string">
             <column name="tailleEntreprise" />
         </property>
-        <property name="fonctionnalites">
+        <property name="fonctionnalites" type="string">
             <column name="fonctionnalites" />
         </property>
-        <property name="typeLicence">
+        <property name="typeLicence" type="string">
             <column name="typeLicence" />
         </property>
     </class>

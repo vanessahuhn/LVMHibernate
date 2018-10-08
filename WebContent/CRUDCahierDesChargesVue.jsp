@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!doctype html>
 <html lang="fr">
@@ -56,7 +57,8 @@
 			<div class="row pt-5">
 				<div class="col-md-4">
 					<div class="card mb-4 shadow-sm">
-						<form action= "CreateServlet" method="post" class="card-body" onsubmit="return validate()">
+						<form action="Servlet" method="post" class="card-body"
+							onsubmit="return validate()">
 							<p class="card-text">
 								Type de site :<input type="text" name="typeSite"
 									class="form-control w-75" id="typeSite" placeholder="" value="">
@@ -79,37 +81,41 @@
 							<div class="d-flex justify-content-center">
 								<button type="submit" class="btn btn-sm btn-outline-secondary">Créer</button>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
-				<!--  début carte -->
-				<jsp:include page="CRUDCahierDesChargesControleur.jsp"></jsp:include>
+			
+			<!--  début carte -->
+
+			<c:forEach items="${cahierDesChargesListe}" var="cahierDesCharges">
 				<div class="col-md-4">
 					<div class="card mb-4 shadow-sm">
 						<div class="card-body">
 							<p class="card-text">
-								Type de site :<input type="text" name="typeSite"
-									class="form-control w-75" id="typeSite"
-									placeholder="<%=(session.getAttribute("typeSite") == null) ? "" : session.getAttribute("typeSite")%>"
-									value="<%=(session.getAttribute("typeSite") == null) ? "" : session.getAttribute("typeSite")%>">
+								Type de site :<input type="text" name="tailleEntreprise"
+									class="form-control w-75" id="tailleEntreprise"
+									placeholder="${cahierDesCharges.getTypeSite()}"
+									value="${cahierDesCharges.getTypeSite()}">
 							</p>
 							<p class="card-text">
 								Taille entreprise :<input type="text" name="tailleEntreprise"
 									class="form-control w-75" id="tailleEntreprise"
-									placeholder="<%=(session.getAttribute("tailleEntreprise") == null) ? "" : session.getAttribute("tailleEntreprise")%>"
-									value="<%=(session.getAttribute("tailleEntreprise") == null) ? "" : session.getAttribute("tailleEntreprise")%>">
+									placeholder="${cahierDesCharges.getTailleEntreprise()}"
+									value="${cahierDesCharges.getTailleEntreprise()}">
 							</p>
+							<!--
 							<p class="card-text">
 								Fonctionnalités :<input type="text" name="fonctionnalites"
 									class="form-control w-75" id="fonctionnalites"
-									placeholder="<%=(session.getAttribute("fonctionnalites") == null) ? "" : session.getAttribute("fonctionnalites")%>"
-									value="<%=(session.getAttribute("fonctionnalites") == null) ? "" : session.getAttribute("fonctionnalites")%>">
+									placeholder="${cahierDesCharges.getFonctionnalites()}"
+									value="${cahierDesCharges.getFonctionnalites()}">
 							</p>
+							-->
 							<p class="card-text">
 								Type licence :<input type="text" name="typeLicence"
 									class="form-control w-75" id="typeLicence"
-									placeholder="<%=(session.getAttribute("typeLicence") == null) ? "" : session.getAttribute("typeLicence")%>"
-									value="<%=(session.getAttribute("typeLicence") == null) ? "" : session.getAttribute("typeLicence")%>">
+									placeholder="${cahierDesCharges.getTypeLicence()}"
+									value="${cahierDesCharges.getTypeLicence()}">
 							</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
@@ -120,10 +126,11 @@
 						</div>
 					</div>
 				</div>
-				<!--  fin carte -->
+			</c:forEach>
+			<!--  fin carte -->
 			</div>
-
 		</div>
+
 	</div>
 	</main>
 

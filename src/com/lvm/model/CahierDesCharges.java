@@ -2,12 +2,12 @@ package com.lvm.model;
 
 import java.util.ArrayList;
 
-public class CahierDesCharges {
+public class CahierDesCharges{
 
 	private int idCahierDesCharges;
 	private String typeSite;
 	private String tailleEntreprise;
-	private ArrayList<String> fonctionnalites;
+	private String fonctionnalites;
 	private String typeLicence;
 	
 	public int getIdCahierDesCharges() {
@@ -28,10 +28,10 @@ public class CahierDesCharges {
 	public void setTailleEntreprise(String tailleEntreprise) {
 		this.tailleEntreprise = tailleEntreprise;
 	}
-	public ArrayList<String> getFonctionnalites() {
+	public String getFonctionnalites() {
 		return fonctionnalites;
 	}
-	public void setFonctionnalites(ArrayList<String> fonctionnalites) {
+	public void setFonctionnalites(String fonctionnalites) {
 		this.fonctionnalites = fonctionnalites;
 	}
 	public String getTypeLicence() {
